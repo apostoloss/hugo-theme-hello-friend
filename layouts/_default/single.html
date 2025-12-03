@@ -3,7 +3,7 @@
   {{ $contentTypeName := cond $isntDefault (string $.Site.Params.contentTypeName) "posts" }}
 
   <article class="post">
-    <h1 class="post-title">{{ .Title | markdownify }}</h1>
+    <h1 class="post-title">{{ .Title | markdownify | emojify }}</h1>
     <div class="post-meta">
       {{ if .Date | default nil }}
         <time class="post-date">
@@ -49,7 +49,7 @@
         <aside class="table-of-contents">{{ .TableOfContents }}</aside>
         {{ end }}
       {{ end }}
-      {{ .Content }}
+      {{ .Content | emojify }}
     </div>
     {{ if eq .Type $.Site.Params.contentTypeName }}
       {{ if or .NextInSection .PrevInSection }}
